@@ -2,8 +2,8 @@
 
 import Link from "next/link";
 import React, { useContext } from "react";
-import {FaUserCircle} from "react-icons/fa"
-import {MdDarkMode, MdOutlineLightMode} from "react-icons/md"
+import { FaUserCircle } from "react-icons/fa"
+import { MdDarkMode, MdOutlineLightMode } from "react-icons/md"
 import ThemeContext from "@/src/context/themeContext";
 import { useSession } from 'next-auth/react';
 import Image from "next/image";
@@ -11,11 +11,10 @@ import Image from "next/image";
 const Header = () => {
     const { darkTheme, setDarkTheme } = useContext(ThemeContext);
 
-    const { data:session } = useSession();
+    const { data: session } = useSession();
 
     return (
         <header className="py-10 px-4 container mx-auto text-xl flex flex-wrap md:flex-nowrap items-center justify-between">
-            <script src="http://localhost:8097"></script>
             <div className="flex items-center w-full md:2/3">
                 <Link href="/" className='font-black text-tertiary-dark'>
                     Hotelzz
@@ -24,39 +23,39 @@ const Header = () => {
                     <li className='flex items-center'>
                         {session?.user ? (
                             <Link href={`/users/${session.user.id}`}>
-                              {session.user.image ? (
-                                <div className="w-10 h-10 rounded-full overflow-hidden">
-                                    <Image 
-                                        src={session.user.image}
-                                        alt={session.user.name!}
-                                        width={40}
-                                        height={40}
-                                        className='hover:scale-125 transition-all duration-700 object-cover w-full h-full'
-                                    />
-                                </div>
-                              ) : (
-                                <FaUserCircle className='cursor-pointer' />
-                              )}
+                                {session.user.image ? (
+                                    <div className="w-10 h-10 rounded-full overflow-hidden">
+                                        <Image
+                                            src={session.user.image}
+                                            alt={session.user.name!}
+                                            width={40}
+                                            height={40}
+                                            className='hover:scale-125 transition-all duration-700 object-cover w-full h-full'
+                                        />
+                                    </div>
+                                ) : (
+                                    <FaUserCircle className='cursor-pointer' />
+                                )}
                             </Link>
                         ) : (
                             <Link href='/auth'>
-                              <FaUserCircle className='cursor-pointer' />
+                                <FaUserCircle className='cursor-pointer' />
                             </Link>
                         )}
                     </li>
                     <li className="ml-2">
-                        {darkTheme? 
-                           (<MdOutlineLightMode className='cursor-pointer' 
-                            onClick={() => {
-                                setDarkTheme(false);
-                                localStorage.removeItem("hotel-theme");
-                            }}
-                           />) : 
-                           <MdDarkMode className='cursor-pointer' 
-                            onClick={() => {
-                                setDarkTheme(true);
-                                localStorage.setItem("hotel-theme", 'true');
-                        }}/>}
+                        {darkTheme ?
+                            (<MdOutlineLightMode className='cursor-pointer'
+                                onClick={() => {
+                                    setDarkTheme(false);
+                                    localStorage.removeItem("hotel-theme");
+                                }}
+                            />) :
+                            <MdDarkMode className='cursor-pointer'
+                                onClick={() => {
+                                    setDarkTheme(true);
+                                    localStorage.setItem("hotel-theme", 'true');
+                                }} />}
                     </li>
                 </ul>
             </div>
@@ -74,6 +73,6 @@ const Header = () => {
             </ul>
         </header>
     )
- }
+}
 
- export default Header
+export default Header
