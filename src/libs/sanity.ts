@@ -1,6 +1,6 @@
-import { SanityClient, createClient } from "next-sanity";
+import { createClient } from "next-sanity";
 
-const sanityClient: SanityClient = createClient({
+const sanityClient = createClient({
     projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID as string,
     dataset: process.env.NEXT_PUBLIC_SANITY_DATASET as string,
     useCdn: process.env.NODE_ENV === 'production',
@@ -8,4 +8,4 @@ const sanityClient: SanityClient = createClient({
     apiVersion: '2024-01-16',
 });
 
-export default (sanityClient: SanityClient);
+export default (sanityClient);
