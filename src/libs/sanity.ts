@@ -8,4 +8,4 @@ const sanityClient: SanityClient = createClient({
     apiVersion: '2024-01-16',
 });
 
-export default sanityClient;
+export default (sanityClient: SanityClient);
